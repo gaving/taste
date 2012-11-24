@@ -58,6 +58,7 @@ class Taste
       _.each _.arbitrary(data.lovedtracks.track), (track) =>
         @querySpotify track.artist.name, track.name, (data) =>
           _.each _.arbitrary(data.tracks), (spot) =>
+            return unless spot?
             console.log "🎵  ", "#{_.first(spot.artists)?.name} - #{spot.name}".green.bold, "(🏃 #{friend})".red.bold
             @play spot.href
 
